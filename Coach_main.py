@@ -50,32 +50,37 @@ def skill_def():
     choosed_defence.play()
 
 
+def damato():
+    x = 0
+    while True:
+        if x >= 300:
+            break
+        print(x)
+        time.sleep(1)
+        x += 1
+        if (x % 5) == 0:
+            the_choosen = random.randint(0, 2)
+            if the_choosen == 0:
+                skill_def()
+
+            elif the_choosen == 1:
+                skill_atk()
+
+            elif the_choosen == 2:
+                skill_comb()
+
+
 pygame.display.set_caption('Coach.Py')
 
 screen = pygame.display.set_mode((500, 500))
-x = 0
 
 while True:
-    if x >= 300:
-        break
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
             exit()
 
-    print(x)
-    time.sleep(1)
-    x += 1
-    if (x % 5) == 0:
-        the_choosen = random.randint(0, 2)
-        if the_choosen == 0:
-            skill_def()
-
-        elif the_choosen == 1:
-            skill_atk()
-
-        elif the_choosen == 2:
-            skill_comb()
+    damato()
 
     screen.fill((255, 255, 255))
     pygame.display.update()
