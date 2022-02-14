@@ -49,32 +49,6 @@ def skill_def():
     choosed_defence.play()
 
 
-def damato():
-    x = 0
-    while True:
-        for event in pygame.event.get():
-            if event.type == QUIT:
-                pygame.quit()
-                exit()
-
-        if x >= 300:
-            break
-
-        print(x)
-        time.sleep(1)
-        x += 1
-        if (x % 5) == 0:
-            the_choosen = random.randint(0, 3)
-            if the_choosen == 0:
-                skill_def()
-
-            elif the_choosen == 1:
-                skill_atk()
-
-            elif the_choosen == 2 or 3:
-                skill_comb()
-
-
 pygame.init()
 
 screen = pygame.display.set_mode((600, 600))
@@ -83,22 +57,44 @@ screen.fill((0, 10, 0))
 
 font = pygame.font.SysFont('arial', 20, True, True)
 y = 0
+x = 0
 
 while True:
-    starter_txt = "START"
+    screen.fill((0, 10, 0))
+    starter_txt = "TYPE ANYTHING TO START"
     starter = font.render(starter_txt, False, (212, 5, 2))
     starter_form = starter.get_rect()
     starter_form.center = (300, 300)
-    pygame.draw.rect(screen, (250, 249, 230), (0, 280, 600, 35))
+
+    timer_txt = f"{x - 180} segundos restantes"
+    timer = font.render(timer_txt, False, (255, 5, 2))
+    timer_form = timer.get_rect()
+    timer_form.center = (300, 20)
+
+    pygame.draw.rect(screen, (250, 255, 250), (0, 280, 600, 35))
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
             exit()
+        if event.type == KEYDOWN:
+            y = 1
 
     if y == 1:
-        damato()
-    y = 1
+        if x >= 300:
+            break
+        print(x)
+        time.sleep(1)
+        x += 1
+        if (x % 5) == 0:
+            the_choosen = random.randint(0, 3)
+            if the_choosen == 0:
+                skill_def()
+            elif the_choosen == 1:
+                skill_atk()
+            elif the_choosen == 2 or 3:
+                skill_comb()
+
 
     screen.blit(starter, starter_form)
-
+    screen.blit(timer, timer_form)
     pygame.display.update()
