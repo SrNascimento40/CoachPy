@@ -61,7 +61,10 @@ x = 0
 
 while True:
     screen.fill((0, 10, 0))
-    starter_txt = "TYPE ANYTHING TO START"
+    if y == 0:
+        starter_txt = "TYPE ANYTHING TO START"
+    if y == 1:
+        starter_txt = "LET'S FVCKING GO"
     starter = font.render(starter_txt, False, (212, 5, 2))
     starter_form = starter.get_rect()
     starter_form.center = (300, 300)
@@ -81,7 +84,7 @@ while True:
 
     if y == 1:
         if x >= 300:
-            break
+            y == 0
         print(x)
         time.sleep(1)
         x += 1
@@ -93,7 +96,6 @@ while True:
                 skill_atk()
             elif the_choosen == 2 or 3:
                 skill_comb()
-
 
     screen.blit(starter, starter_form)
     screen.blit(timer, timer_form)
